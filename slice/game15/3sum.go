@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/deckarep/golang-set/v2"
+)
 
 /*
 	给定一个数组，要求在这个数组中找出 3 个数之和为 0 的所有组合。
@@ -14,24 +17,26 @@ A solution set is:
 
 ]
 */
-type Set[T comparable] struct {
-	data map[T]struct{} // 用 struct{} 作为值，不占用内存
-}
-
-func NewSet[T comparable]() Set[T] {
-	return Set[T]{
-		data: make(map[T]struct{}),
-	}
-}
-func (s *Set[T]) Add(v T) {
-	s.data[v] = struct{}{} // 用空结构体占位 struct{}空类型 {}初始化为空
-}
-func (s *Set[T]) Contains(v T) bool {
-	_, exists := s.data[v]
-	return exists
-}
+//type Set[T comparable] struct {
+//	data map[T]struct{} // 用 struct{} 作为值，不占用内存
+//}
+//
+//func NewSet[T comparable]() Set[T] {
+//	return Set[T]{
+//		data: make(map[T]struct{}),
+//	}
+//}
+//func (s *Set[T]) Add(v T) {
+//	s.data[v] = struct{}{} // 用空结构体占位 struct{}空类型 {}初始化为空
+//}
+//func (s *Set[T]) Contains(v T) bool {
+//	_, exists := s.data[v]
+//	return exists
+//}
 
 func main() {
+	s1 := mapset.NewSet[int](1, 2, 3, 4)
+	fmt.Println("s1 contains 3: ", s1.Contains(3))
 	testslice := []int{-1, 0, 1, 2, -1, -4}
 	//target := 49
 	fmt.Println(sumof3(testslice))
